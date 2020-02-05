@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -54,4 +55,16 @@ public class Player : MonoBehaviour
         Debug.Log("GameObject is named: " + otherObject.gameObject.name);
     }
 
+    void OnDestroy()
+    {
+        GameManager.instance.lives -= 1;
+        if(GameManager.instance.lives > 0)
+        {
+            GameManager.instance.Respawn();
+        }
+        else
+        {
+            Debug.Log("GAME OVER");
+        }
+    }
 }

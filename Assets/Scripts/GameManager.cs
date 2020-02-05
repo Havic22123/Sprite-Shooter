@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int score = 0;
     public bool isPaused = false;
+    public GameObject playerPrefab;
+    public int lives = 3;
 
     public void Awake()
     {
@@ -23,6 +25,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
+
+    public void Respawn()
+    {
+        Instantiate(playerPrefab);
+    }
+
 }
