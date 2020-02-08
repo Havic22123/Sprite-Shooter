@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         tf = GetComponent<Transform>();
+
     }
 
     // Update is called once per frame

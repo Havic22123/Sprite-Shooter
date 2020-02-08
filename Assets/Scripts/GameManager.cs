@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
     public GameObject playerPrefab;
     public int lives = 3;
+    public GameObject killboxPrefab;
 
     public void Awake()
     {
@@ -36,4 +37,8 @@ public class GameManager : MonoBehaviour
         Instantiate(playerPrefab);
     }
 
+    public void killRespawn()
+    {
+        Instantiate(killboxPrefab);
+    }
 }
