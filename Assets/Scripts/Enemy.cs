@@ -17,9 +17,9 @@ public class Enemy : MonoBehaviour
     {
         tf.position += tf.right * movementSpeed * Time.deltaTime;
     }
-    void OnTriggerExit2D(Collider2D Player)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(Player.gameObject);
+        Destroy(other.gameObject);
     }
 
     void OnDestroy()
