@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject killboxPrefab;
     public List<GameObject> EnemiesList = new List<GameObject>();
     public GameObject player;
+    public GameObject[] enemyPrefabs;
 
     public void Awake()
     {

@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        throw new NotImplementedException();
+        Instantiate(bulletPrefab, firePoint.position)
     }
 
     void OnCollisionEnter2D(Collision2D otherObject)
