@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float movementSpeed = 1.0f;
     private Transform tf;
+
+    public float rotationSpeed = 1.0f;
+    public float movementSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
-        tf = GetComponent<Transform>();
+        tf = gameObject.GetComponent<Transform>();
+        GameManager.instance.enemiesList.Add(this.gameObject);
+        // Aim at the player at start
     }
 
     // Update is called once per frame
     void Update()
     {
         tf.position += tf.right * movementSpeed * Time.deltaTime;
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Destroy(other.gameObject);
+        // Always move forward
     }
 
     void OnDestroy()
     {
-        Debug.Log("DEAD");
+        GameManager.instance.enemiesList.Remove(this.gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D otherObject)
+    {
+        if (otherObject.gameObject == GameManager.instance.player)
+        {
+            Destroy(otherObject.gameObject);
+            Destroy(this.gameObject);
+        }
+
     }
+
+}

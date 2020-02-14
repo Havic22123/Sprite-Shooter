@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,38 +8,46 @@ public class Player : MonoBehaviour
     private Transform tf;
 
     public float rotationSpeed = 1.0f;
-
     public float movementSpeed = 1.0f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
     // Start is called before the first frame update
     void Start()
     {
-        tf = GetComponent<Transform>();
-
+        tf = gameObject.GetComponent<Transform>();
+        if (GameManager.instance.player == null)
+        {
+            GameManager.instance.player = this.gameObject;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) || (Input.GetKey(KeyCode.W)))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             tf.position += tf.right * movementSpeed * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A)))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            tf.Rotate(0,0,rotationSpeed*Time.deltaTime);
+            tf.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.D)))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             tf.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
         }
-
-        if (Input.GetKey(KeyCode.DownArrow) || (Input.GetKey(KeyCode.S)))
+        
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             tf.position += tf.right * -movementSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Shoot();
         }
@@ -48,25 +55,25 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        throw new NotImplementedException();
+        Debug.Log("Shooting!");
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void OnCollisionEnter2D(Collision2D otherObject)
     {
-        Debug.Log("GameObject is named: " + otherObject.gameObject.name);
-        Destroy(this.gameObject);
+        Debug.Log("[Collision Entered] The GameObject of the other object is named: " + otherObject.gameObject.name);
+    }
+
+    void OnCollisionExit2D(Collision2D otherObject)
+    {
+        Debug.Log("[Collision Exited] The GameObject of the other object is named: " + otherObject.gameObject.name);
     }
 
     void OnDestroy()
     {
-        GameManager.instance.lives -= 1;
-        if(GameManager.instance.lives > 0)
-        {
-            GameManager.instance.Respawn();
-        }
-        else
-        {
-            Debug.Log("GAME OVER");
-        }
+        // If the player dies, they lose a life.
+        GameManager.instance.Die();
     }
+
+
 }

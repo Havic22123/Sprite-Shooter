@@ -8,9 +8,4 @@ public class KillBox : MonoBehaviour
     {
         Destroy(other.gameObject);
     }
-
-    void OnDestroy()
-    {
-        GameManager.instance.killRespawn();
-    }
 }
