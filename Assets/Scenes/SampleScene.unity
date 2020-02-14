@@ -356,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 7123221821592313542, guid: b10045b1f0963844a9e24e930e46dbdd,
         type: 3}
       propertyPath: m_Name
-      value: KillBox (1)
+      value: Bullet KillBox
       objectReference: {fileID: 0}
     - target: {fileID: 7123221821592313540, guid: b10045b1f0963844a9e24e930e46dbdd,
         type: 3}
