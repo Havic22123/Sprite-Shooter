@@ -3,7 +3,16 @@ guid: 7114898c3c051234ca171aabde5d5af3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerPrefab: {fileID: 2803821388960620462, guid: 195a06d327d59e14891037e490e9aa11,
+      type: 3}
+  - player: {instanceID: 0}
+  - asteroidPrefab: {fileID: 1379092402563258663, guid: 4590660ccdf767049ae99e8fb9539eab,
+      type: 3}
+  - enemyPrefab: {fileID: 8659528149300337796, guid: c81af55638e1d2c4e88fc2208fb033a3,
+      type: 3}
+  - bullet: {fileID: 5271412641910048818, guid: 33128cd5accdd61468f401d08b7bcd5a,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

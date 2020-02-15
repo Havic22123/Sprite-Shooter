@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tf.position += tf.right * movementSpeed * Time.deltaTime;
+        tf.position += tf.up * movementSpeed * Time.deltaTime;
         // Always move forward
     }
 

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    private Transform tf;
+
+    public float movementSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
+        tf = gameObject.GetComponent<Transform>();
         GameManager.instance.enemiesList.Add(this.gameObject);
         // Aim at the player at start
     }
@@ -14,7 +18,7 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Always move forward
+        tf.position += tf.up * -movementSpeed * Time.deltaTime;
     }
 
     void OnDestroy()
