@@ -19,7 +19,7 @@ public class Shipspawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > nextSpawn)
+        if (Time.time > nextSpawn && GameManager.instance.lives > 0)
         {
             nextSpawn = Time.time + spawnRate;
             randX = Random.Range(-11f, 11f);

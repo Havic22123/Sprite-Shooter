@@ -5,13 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Transform tf;
-
     public float rotationSpeed = 1.0f;
     public float movementSpeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {
-        tf = gameObject.GetComponent<Transform>();
+        tf = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         GameManager.instance.enemiesList.Add(this.gameObject);
         // Aim at the player at start
     }
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tf.position += tf.up * movementSpeed * Time.deltaTime;
+        transform.position = Vector2.MoveTowards(transform.position, tf.position, movementSpeed * Time.deltaTime);
         // Always move forward
     }
 

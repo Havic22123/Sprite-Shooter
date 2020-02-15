@@ -28,7 +28,6 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D otherObject)
     {
-        Debug.Log("[Collision Entered] The GameObject of the other object is named: " + otherObject.gameObject.name);
         if (otherObject.gameObject == GameManager.instance.player)
         {
             Destroy(otherObject.gameObject);
